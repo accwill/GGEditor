@@ -1,8 +1,8 @@
 import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import { Icon, Divider, Tooltip } from 'antd';
-import GGEditor, { Flow, Mind, Command, ContextMenu, constants } from 'gg-editor';
-import { MindData } from 'gg-editor/lib/common/interfaces';
+import GGEditor, { Flow, Mind, Command, ContextMenu, constants } from 'gg-editor-customer';
+import { MindData } from 'gg-editor-customer/lib/common/interfaces';
 import styles from './index.less';
 
 const { EditorCommand } = constants;

@@ -1,6 +1,6 @@
 import React from 'react';
-import GGEditor, { Mind } from 'gg-editor';
-import { MindData } from 'gg-editor/lib/common/interfaces';
+import GGEditor, { Mind } from 'gg-editor-customer';
+import { MindData } from 'gg-editor-customer/lib/common/interfaces';
 import styles from './index.less';
 
 const data: MindData = {

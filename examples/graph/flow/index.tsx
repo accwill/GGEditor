@@ -1,18 +1,18 @@
 import React from 'react';
-import GGEditor, { Flow } from 'gg-editor';
+import GGEditor, { Flow } from 'gg-editor-customer';
 import styles from './index.less';
 
 const data = {
   nodes: [
     {
       id: '0',
-      label: 'Node',
+      label: 'Node1',
       x: 50,
       y: 50,
     },
     {
       id: '1',
-      label: 'Node',
+      label: 'Node2',
       x: 50,
       y: 200,
     },
@@ -31,7 +31,18 @@ const data = {
 function App() {
   return (
     <GGEditor>
-      <Flow className={styles.graph} data={data} />
+      <Flow
+        className={styles.graph}
+        data={data}
+        graphConfig={{
+          hjackCommand: (commandName, node) => {
+            if (commandName === 'remove' && node.type === 'circle') {
+              return false;
+            }
+            return true;
+          },
+        }}
+      />
     </GGEditor>
   );
 }

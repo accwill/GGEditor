@@ -13,6 +13,11 @@ export enum ItemType {
   Edge = 'edge',
 }
 
+/** 指令名称 */
+export enum CommandName {
+  Remove = 'remove',
+}
+
 export enum ItemState {
   Active = 'active',
   ActiveAnchorPoints = 'activeAnchorPoints',

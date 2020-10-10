@@ -1,5 +1,5 @@
 import React from 'react';
-import GGEditor, { Flow, EditableLabel } from 'gg-editor';
+import GGEditor, { Flow, EditableLabel } from 'gg-editor-customer';
 import { NodePanel, EdgePanel, MultiPanel, CanvasPanel } from './Panel';
 import styles from './index.less';
 

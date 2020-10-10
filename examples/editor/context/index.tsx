@@ -1,5 +1,5 @@
 import React from 'react';
-import GGEditor, { Flow } from 'gg-editor';
+import GGEditor, { Flow } from 'gg-editor-customer';
 import WrappedClassComponent from './WrappedClassComponent';
 import WrappedFunctionComponent from './WrappedFunctionComponent';
 import styles from './index.less';

@@ -1,5 +1,5 @@
 import React from 'react';
-import GGEditor, { Flow, Item, ItemPanel } from 'gg-editor';
+import GGEditor, { Flow, Item, ItemPanel } from 'gg-editor-customer';
 import styles from './index.less';
 
 const data = {
@@ -8,15 +8,17 @@ const data = {
 };
 
 function App() {
+  const ctx = React.useRef<any>({}).current;
+
   return (
     <GGEditor>
       <ItemPanel className={styles.itemPanel}>
         <Item
           className={styles.item}
           model={{
-            type: 'circle',
             size: 50,
             label: 'circle',
+            type: 'circle',
           }}
         >
           <img
@@ -87,7 +89,19 @@ function App() {
           />
         </Item>
       </ItemPanel>
-      <Flow className={styles.graph} data={data} />
+      <Flow
+        className={styles.graph}
+        data={data}
+        ref={r => (ctx.flow = r)}
+        graphConfig={{
+          hjackCommand: (commandName, node) => {
+            if (commandName === 'remove' && node.type === 'circle') {
+              return false;
+            }
+            return true;
+          },
+        }}
+      />
     </GGEditor>
   );
 }

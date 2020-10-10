@@ -1,7 +1,8 @@
 import { isMind, executeBatch } from '@/utils';
-import { ItemType } from '@/common/constants';
+import { CommandName, ItemType } from '@/common/constants';
 import { TreeGraph, MindData, NodeModel, EdgeModel } from '@/common/interfaces';
 import { BaseCommand, baseCommand } from '@/components/Graph/command/base';
+import { each, get, isFunction } from 'lodash';
 
 export interface RemoveCommandParams {
   flow: {
@@ -89,9 +90,17 @@ const removeCommand: BaseCommand<RemoveCommandParams> = {
       (graph as TreeGraph).removeChild(model.id);
     } else {
       const { nodes, edges } = this.params.flow;
+      const newNodes = { ...nodes };
+      const hjackComand = get(graph, 'cfg.hjackCommand');
+      if (isFunction(hjackComand)) {
+        each(newNodes, (node, id) => {
+          const isRemove = hjackComand?.(CommandName.Remove, node, graph);
+          !isRemove && Reflect.deleteProperty(newNodes, id);
+        });
+      }
 
       executeBatch(graph, () => {
-        [...Object.keys(nodes), ...Object.keys(edges)].forEach(id => {
+        [...Object.keys(newNodes), ...Object.keys(edges)].forEach(id => {
           graph.removeItem(id);
         });
       });

@@ -2,9 +2,9 @@ import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import { Card, Form, Input } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
-import { DetailPanel, withEditorContext } from 'gg-editor';
-import { EditorContextProps } from 'gg-editor/lib/components/EditorContext';
-import { DetailPanelComponentProps } from 'gg-editor/lib/components/DetailPanel';
+import { DetailPanel, withEditorContext } from 'gg-editor-customer';
+import { EditorContextProps } from 'gg-editor-customer/lib/components/EditorContext';
+import { DetailPanelComponentProps } from 'gg-editor-customer/lib/components/DetailPanel';
 
 const { Item } = Form;
 
