@@ -1,6 +1,6 @@
 {
-  "name": "gg-editor",
-  "version": "3.1.3",
+  "name": "gg-editor-customer",
+  "version": "1.0.0",
   "description": "A visual graph editor based on G6 and React",
   "keywords": [
     "react",
@@ -36,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alibaba/GGEditor.git"
+    "url": "git+https://github.com/accwill/GGEditor.git"
   },
   "author": {
     "name": "高力",
@@ -44,9 +44,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alibaba/GGEditor/issues"
+    "url": "https://github.com/accwill/GGEditor/issues"
   },
-  "homepage": "https://github.com/alibaba/GGEditor#readme",
+  "homepage": "https://github.com/accwill/GGEditor#readme",
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
