@@ -90,17 +90,13 @@ const removeCommand: BaseCommand<RemoveCommandParams> = {
       (graph as TreeGraph).removeChild(model.id);
     } else {
       const { nodes, edges } = this.params.flow;
-      const newNodes = { ...nodes };
       const hjackComand = get(graph, 'cfg.hjackCommand');
-      if (isFunction(hjackComand)) {
-        each(newNodes, (node, id) => {
-          const isNotRemove = hjackComand?.({ commandName: CommandName.Remove, node, graph });
-          !isNotRemove && Reflect.deleteProperty(newNodes, id);
-        });
+      if (hjackComand?.({ commandName: CommandName.Remove, node: nodes[0], graph })) {
+        return;
       }
 
       executeBatch(graph, () => {
-        [...Object.keys(newNodes), ...Object.keys(edges)].forEach(id => {
+        [...Object.keys(nodes), ...Object.keys(edges)].forEach(id => {
           graph.removeItem(id);
         });
       });
