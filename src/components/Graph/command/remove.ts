@@ -91,7 +91,8 @@ const removeCommand: BaseCommand<RemoveCommandParams> = {
     } else {
       const { nodes, edges } = this.params.flow;
       const hjackComand = get(graph, 'cfg.hjackCommand');
-      if (hjackComand?.({ commandName: CommandName.Remove, node: nodes[0], graph })) {
+      const [key]: string[] = Reflect.ownKeys(nodes) as string[];
+      if (hjackComand?.({ commandName: CommandName.Remove, node: nodes[key], graph })) {
         return;
       }
 
