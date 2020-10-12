@@ -94,8 +94,8 @@ const removeCommand: BaseCommand<RemoveCommandParams> = {
       const hjackComand = get(graph, 'cfg.hjackCommand');
       if (isFunction(hjackComand)) {
         each(newNodes, (node, id) => {
-          const isRemove = hjackComand?.(CommandName.Remove, node, graph);
-          !isRemove && Reflect.deleteProperty(newNodes, id);
+          const isNotRemove = hjackComand?.({ commandName: CommandName.Remove, node, graph });
+          !isNotRemove && Reflect.deleteProperty(newNodes, id);
         });
       }
 

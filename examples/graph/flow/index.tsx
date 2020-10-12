@@ -1,6 +1,7 @@
 import React from 'react';
 import GGEditor, { Flow } from 'gg-editor-customer';
 import styles from './index.less';
+import { get } from 'lodash';
 
 const data = {
   nodes: [
@@ -35,11 +36,18 @@ function App() {
         className={styles.graph}
         data={data}
         graphConfig={{
-          hjackCommand: (commandName, node) => {
+          hjackCommand: ({ commandName, node }) => {
             if (commandName === 'remove' && node.type === 'circle') {
               return false;
             }
             return true;
+          },
+          hjacpHighlitghtPoint: ({ node }) => {
+            const nodeConfig = get(node, '_cfg');
+            if (nodeConfig.id === '1') {
+              return true;
+            }
+            return false;
           },
         }}
       />

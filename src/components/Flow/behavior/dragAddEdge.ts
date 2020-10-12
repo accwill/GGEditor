@@ -3,7 +3,7 @@ import { guid } from '@/utils';
 import { ItemType, ItemState, GraphType, AnchorPointState, GraphCustomEvent } from '@/common/constants';
 import { Node, Edge, Behavior, GraphEvent, EdgeModel, AnchorPoint } from '@/common/interfaces';
 import behaviorManager from '@/common/behaviorManager';
-import { get } from 'lodash';
+import { get, isFunction } from 'lodash';
 
 interface DragAddEdgeBehavior extends Behavior {
   edge: Edge | null;
@@ -105,6 +105,11 @@ const dragAddEdgeBehavior: DragAddEdgeBehavior & ThisType<DragAddEdgeBehavior & 
     });
 
     // TODO: 劫持高亮点
+    const hjacpHighlitghtPoint = get(graph, 'cfg.hjacpHighlitghtPoint');
+
+    if (hjacpHighlitghtPoint({ node: sourceNode, graph })) {
+      return;
+    }
 
     sourceNode.set('anchorPointsState', sourceAnchorPointsState);
     graph.setItemState(sourceNode, ItemState.ActiveAnchorPoints, true);
