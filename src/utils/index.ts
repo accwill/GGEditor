@@ -137,7 +137,7 @@ export function clearSelectedState(graph: Graph, shouldUpdate: (item: Item) => b
 
 /** 获取回溯路径 - Flow */
 export function getFlowRecallEdges(graph: Graph, node: Node, targetIds: string[] = [], edges: Edge[] = []) {
-  const inEdges: Edge[] = node.getInEdges();
+  const inEdges: Edge[] = node.getOutEdges();
 
   if (!inEdges.length) {
     return [];
