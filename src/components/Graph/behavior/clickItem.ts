@@ -34,7 +34,7 @@ const clickItemBehavior: ClickItemBehavior & ThisType<ClickItemBehavior & Defaul
 
   getEvents() {
     return {
-      'node:click': 'handleItemClick',
+      'node:mousedown': 'handleItemClick',
       'edge:click': 'handleItemClick',
       'canvas:click': 'handleCanvasClick',
       keydown: 'handleKeyDown',
@@ -44,7 +44,6 @@ const clickItemBehavior: ClickItemBehavior & ThisType<ClickItemBehavior & Defaul
 
   handleItemClick({ item }) {
     const { graph } = this;
-
     if (isMind(graph) && isEdge(item)) {
       return;
     }
@@ -62,7 +61,8 @@ const clickItemBehavior: ClickItemBehavior & ThisType<ClickItemBehavior & Defaul
         graph.setItemState(item, ItemState.Selected, true);
       }
     }
-
+    const state = item.getStates();
+    console.log('state', state, item);
     graph.emit(EditorEvent.onGraphStateChange, {
       graphState: getGraphState(graph),
     });

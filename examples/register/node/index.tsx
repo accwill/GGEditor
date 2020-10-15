@@ -34,9 +34,9 @@ function App() {
       <Flow
         className={styles.graph}
         data={data}
-        graphConfig={{ defaultNode: { type: 'customNode' } }}
+        // graphConfig={{ defaultNode: { type: 'customNode' } }}
         // graphConfig={{ defaultNode: { type: 'customStartNode' } }}
-        // graphConfig={{ defaultNode: { type: 'customInternalNode', size: 50 } }}
+        graphConfig={{ defaultNode: { type: 'customInternalNode', size: 50 } }}
       />
       <RegisterNode
         name="customNode"
@@ -44,7 +44,7 @@ function App() {
           getCustomConfig(model) {
             return {
               wrapperStyle: {
-                fill: '#000000',
+                fill: 'red',
               },
             };
           },
@@ -57,6 +57,11 @@ function App() {
           getCustomConfig(model) {
             return {
               size: [80, 40],
+              stateStyles: {
+                wrapperStyle: {
+                  fill: 'red',
+                },
+              },
               wrapperStyle: {
                 fill: '#5E6A7D',
               },

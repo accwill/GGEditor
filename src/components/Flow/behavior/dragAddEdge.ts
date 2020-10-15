@@ -173,7 +173,6 @@ const dragAddEdgeBehavior: DragAddEdgeBehavior & ThisType<DragAddEdgeBehavior & 
 
   handleMouseMove(e) {
     const { graph, edge } = this;
-
     if (!edge) {
       return;
     }

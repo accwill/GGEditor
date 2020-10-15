@@ -23,7 +23,7 @@ const recallEdgeBehavior: RecallEdgeBehavior = {
 
   getEvents() {
     return {
-      'node:click': 'handleNodeClick',
+      'node:mousedown': 'handleNodeClick',
       'edge:click': 'handleEdgeClick',
       'canvas:click': 'handleCanvasClick',
     };
