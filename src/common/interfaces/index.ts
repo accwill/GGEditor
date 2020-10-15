@@ -42,8 +42,7 @@ export interface FlowData extends IGraphData {}
 export interface MindData extends ITreeGraphData {}
 
 export interface NodeModel extends INodeConfig {
-  /** 删除之前执行，返回false不进行删除, true进行删除 */
-  beforeRemove?: (node: NodeModel) => Boolean;
+  originStyle: ShapeStyle;
 }
 export interface EdgeModel extends IEdgeConfig {}
 export interface GraphEvent extends IGraphEvent {}
