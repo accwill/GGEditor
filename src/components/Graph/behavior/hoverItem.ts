@@ -22,12 +22,21 @@ const hoverItemBehavior: HoverItemBehavior = {
   handleItemMouseenter({ item }) {
     const { graph } = this;
 
+    const states = item.getStates();
+    const stateStyle = item.getStateStyle(ItemState.Active); // 设置hover状态
+    if (stateStyle && !states.includes?.(ItemState.Selected)) {
+      item.update({ style: stateStyle });
+    }
     graph.setItemState(item, ItemState.Active, true);
   },
 
   handleItemMouseleave({ item }) {
     const { graph } = this;
-
+    const states = item.getStates();
+    if (!states.includes?.(ItemState.Selected)) {
+      const stateStyle = item.getOriginStyle();
+      item.update({ style: stateStyle });
+    }
     graph.setItemState(item, ItemState.Active, false);
   },
 };

@@ -61,8 +61,8 @@ const clickItemBehavior: ClickItemBehavior & ThisType<ClickItemBehavior & Defaul
         graph.setItemState(item, ItemState.Selected, true);
       }
     }
-    const state = item.getStates();
-    console.log('state', state, item);
+    const style = item.getStateStyle(ItemState.Selected);
+    item.update({ style });
     graph.emit(EditorEvent.onGraphStateChange, {
       graphState: getGraphState(graph),
     });

@@ -1,6 +1,7 @@
 import React from 'react';
 import GGEditor, { Flow, RegisterNode, setAnchorPointsState } from 'gg-editor-customer';
 import styles from './index.less';
+import { ItemState } from '../../../lib/common/constants';
 
 const data = {
   nodes: [
@@ -35,8 +36,8 @@ function App() {
         className={styles.graph}
         data={data}
         // graphConfig={{ defaultNode: { type: 'customNode' } }}
-        // graphConfig={{ defaultNode: { type: 'customStartNode' } }}
-        graphConfig={{ defaultNode: { type: 'customInternalNode', size: 50 } }}
+        graphConfig={{ defaultNode: { type: 'customStartNode' } }}
+        // graphConfig={{ defaultNode: { type: 'customInternalNode', size: 50 } }}
       />
       <RegisterNode
         name="customNode"
@@ -58,8 +59,21 @@ function App() {
             return {
               size: [80, 40],
               stateStyles: {
-                wrapperStyle: {
-                  fill: 'red',
+                active: {
+                  wrapperStyle: {
+                    fill: 'red',
+                  },
+                  contentStyle: {
+                    fill: 'blue',
+                  },
+                },
+                selected: {
+                  wrapperStyle: {
+                    fill: 'green',
+                  },
+                  contentStyle: {
+                    fill: 'black',
+                  },
                 },
               },
               wrapperStyle: {
@@ -87,6 +101,15 @@ function App() {
       <RegisterNode
         name="customInternalNode"
         config={{
+          getCustomConfig(model) {
+            return {
+              stateStyles: {
+                wrapperStyle: {
+                  fill: 'red',
+                },
+              },
+            };
+          },
           setState(name, value, item) {
             setAnchorPointsState.call(
               this,
