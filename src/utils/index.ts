@@ -129,7 +129,7 @@ export function clearSelectedState(graph: Graph, shouldUpdate: (item: Item) => b
   executeBatch(graph, () => {
     [...selectedNodes, ...selectedEdges].forEach(item => {
       if (shouldUpdate(item)) {
-        const style = item.getOriginStyle();
+        const { style } = item.getModel();
         item.update({ style });
         graph.setItemState(item, ItemState.Selected, false);
       }
