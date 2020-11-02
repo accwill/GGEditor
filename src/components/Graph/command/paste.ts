@@ -1,8 +1,9 @@
 import { guid, executeBatch } from '@/utils';
 import global from '@/common/global';
-import { ItemType } from '@/common/constants';
+import { CommandName, ItemType } from '@/common/constants';
 import { NodeModel } from '@/common/interfaces';
 import { BaseCommand, baseCommand } from '@/components/Graph/command/base';
+import { get } from 'lodash';
 
 export interface PasteCommandParams {
   models: NodeModel[];
@@ -56,6 +57,11 @@ const pasteCommand: BaseCommand<PasteCommandParams> = {
 
   undo(graph) {
     const { models } = this.params;
+
+    const hjackComand = get(graph, 'cfg.hjackCommand');
+    if (hjackComand?.({ commandName: CommandName.Paste, node: models, graph })) {
+      return;
+    }
 
     executeBatch(graph, () => {
       models.forEach(model => {

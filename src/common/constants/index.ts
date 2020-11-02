@@ -16,6 +16,7 @@ export enum ItemType {
 /** 指令名称 */
 export enum CommandName {
   Remove = 'remove',
+  Paste = 'paste',
 }
 
 export enum ItemState {
