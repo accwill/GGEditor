@@ -104,7 +104,6 @@ const dragAddNodeBehavior: DragAddNodeBehavior = {
     this.shape.remove(true);
 
     const commandManager: CommandManager = graph.get('commandManager');
-
     commandManager.execute(graph, EditorCommand.Add, {
       type: ItemType.Node,
       model: {

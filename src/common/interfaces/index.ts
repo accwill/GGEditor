@@ -49,7 +49,17 @@ export interface GraphEvent extends IGraphEvent {}
 
 export interface GraphOptions extends IGraphOptions {
   /** remove 节点或线之前执行，返回true 不进行删除 */
-  hjackCommand: ({ graph, node, commnadName }) => boolean;
+  hjackCommand: ({
+    graph,
+    node,
+    commandName,
+    callback,
+  }: {
+    graph: any;
+    node: any;
+    commandName: string;
+    callback: Function;
+  }) => boolean;
   /** 鼠标移入节点之后，节点是否高亮Point, 返回true不进行高亮 */
   hjacpHighlitghtPoint: ({ graph, node }) => boolean;
 }

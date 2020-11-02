@@ -92,15 +92,17 @@ const removeCommand: BaseCommand<RemoveCommandParams> = {
       const { nodes, edges } = this.params.flow;
       const hjackComand = get(graph, 'cfg.hjackCommand');
       const [key]: string[] = Reflect.ownKeys(nodes) as string[];
-      if (hjackComand?.({ commandName: CommandName.Remove, node: nodes[key], graph })) {
+      if (hjackComand?.({ commandName: CommandName.Remove, node: nodes[key], graph, callback })) {
         return;
       }
-
-      executeBatch(graph, () => {
-        [...Object.keys(nodes), ...Object.keys(edges)].forEach(id => {
-          graph.removeItem(id);
+      function callback() {
+        executeBatch(graph, () => {
+          [...Object.keys(nodes), ...Object.keys(edges)].forEach(id => {
+            graph.removeItem(id);
+          });
         });
-      });
+      }
+      callback();
     }
   },
 
