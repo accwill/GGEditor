@@ -43,6 +43,10 @@ const pasteCommand: BaseCommand<PasteCommandParams> = {
   execute(graph) {
     const { models } = this.params;
 
+    const hjackComand = get(graph, 'cfg.hjackCommand');
+    if (hjackComand?.({ commandName: CommandName.Paste, node: models, graph })) {
+      return;
+    }
     executeBatch(graph, () => {
       models.forEach(model => {
         graph.addItem(ItemType.Node, model);
@@ -57,11 +61,6 @@ const pasteCommand: BaseCommand<PasteCommandParams> = {
 
   undo(graph) {
     const { models } = this.params;
-
-    const hjackComand = get(graph, 'cfg.hjackCommand');
-    if (hjackComand?.({ commandName: CommandName.Paste, node: models, graph })) {
-      return;
-    }
 
     executeBatch(graph, () => {
       models.forEach(model => {

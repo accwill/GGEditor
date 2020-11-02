@@ -37,6 +37,7 @@ function App() {
         data={data}
         graphConfig={{
           hjackCommand: ({ commandName, node }) => {
+            console.log(commandName, node);
             if (commandName === 'remove' && node.type === 'circle') {
               return false;
             }
