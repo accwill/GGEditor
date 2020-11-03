@@ -1,5 +1,5 @@
 import isArray from 'lodash/isArray';
-import { guid } from '@/utils';
+import { clearSelectedState, guid } from '@/utils';
 import global from '@/common/global';
 import { ItemType, GraphType, GraphMode, EditorCommand } from '@/common/constants';
 import { GShape, GGroup, NodeModel, Behavior, GraphEvent } from '@/common/interfaces';
@@ -100,7 +100,7 @@ const dragAddNodeBehavior: DragAddNodeBehavior = {
       x -= width / 2;
       y -= height / 2;
     }
-
+    clearSelectedState(graph);
     this.shape.remove(true);
 
     const commandManager: CommandManager = graph.get('commandManager');
