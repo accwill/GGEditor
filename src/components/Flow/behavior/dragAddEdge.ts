@@ -121,6 +121,9 @@ const dragAddEdgeBehavior: DragAddEdgeBehavior & ThisType<DragAddEdgeBehavior & 
 
     if (!edge) {
       item.set('anchorPointsState', []);
+      if (item.hasState(ItemState.Selected)) {
+        return;
+      }
       graph.setItemState(item, ItemState.ActiveAnchorPoints, false);
     }
   },

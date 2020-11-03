@@ -132,6 +132,7 @@ export function clearSelectedState(graph: Graph, shouldUpdate: (item: Item) => b
         const { originStyle } = item.getModel();
         item.update({ style: originStyle });
         graph.setItemState(item, ItemState.Selected, false);
+        graph.setItemState(item, ItemState.ActiveAnchorPoints, false);
       }
     });
   });

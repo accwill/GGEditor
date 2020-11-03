@@ -59,10 +59,13 @@ const clickItemBehavior: ClickItemBehavior & ThisType<ClickItemBehavior & Defaul
 
       if (!isSelected) {
         graph.setItemState(item, ItemState.Selected, true);
+        graph.setItemState(item, ItemState.ActiveAnchorPoints, true);
       }
     }
     const style = item.getStateStyle(ItemState.Selected);
-    item.update({ style });
+
+    style && item.update({ style });
+
     graph.emit(EditorEvent.onGraphStateChange, {
       graphState: getGraphState(graph),
     });

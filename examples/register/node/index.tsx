@@ -36,8 +36,8 @@ function App() {
         className={styles.graph}
         data={data}
         // graphConfig={{ defaultNode: { type: 'customNode' } }}
-        graphConfig={{ defaultNode: { type: 'customStartNode' } }}
-        // graphConfig={{ defaultNode: { type: 'customInternalNode', size: 50 } }}
+        // graphConfig={{ defaultNode: { type: 'customStartNode' } }}
+        graphConfig={{ defaultNode: { type: 'customInternalNode', size: 50 } }}
       />
       <RegisterNode
         name="customNode"
@@ -118,7 +118,6 @@ function App() {
               item,
               (item, anchorPoint) => {
                 const { width, height } = item.getKeyShape().getBBox();
-
                 const [x, y] = anchorPoint;
 
                 return {

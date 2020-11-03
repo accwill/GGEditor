@@ -35,7 +35,7 @@ const hoverItemBehavior: HoverItemBehavior = {
     const states = item.getStates();
     if (!states.includes?.(ItemState.Selected)) {
       const { originStyle } = item.getModel();
-      item.update({ style: originStyle });
+      originStyle && item.update({ style: originStyle });
     }
     graph.setItemState(item, ItemState.Active, false);
   },
