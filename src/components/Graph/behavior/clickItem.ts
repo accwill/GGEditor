@@ -2,6 +2,7 @@ import { isMind, isEdge, getGraphState, clearSelectedState } from '@/utils';
 import { ItemState, GraphState, EditorEvent } from '@/common/constants';
 import { Item, Behavior } from '@/common/interfaces';
 import behaviorManager from '@/common/behaviorManager';
+import { get } from 'lodash';
 
 interface ClickItemBehavior extends Behavior {
   /** 处理点击事件 */
@@ -59,7 +60,12 @@ const clickItemBehavior: ClickItemBehavior & ThisType<ClickItemBehavior & Defaul
 
       if (!isSelected) {
         graph.setItemState(item, ItemState.Selected, true);
-        graph.setItemState(item, ItemState.ActiveAnchorPoints, true);
+
+        // TODO: 劫持高亮点
+        const hjacpHighlitghtPoint = get(graph, 'cfg.hjacpHighlitghtPoint');
+        if (!hjacpHighlitghtPoint?.({ node: item, graph })) {
+          graph.setItemState(item, ItemState.ActiveAnchorPoints, true);
+        }
       }
     }
     const style = item.getStateStyle(ItemState.Selected);

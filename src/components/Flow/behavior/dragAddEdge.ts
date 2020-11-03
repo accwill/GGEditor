@@ -106,7 +106,6 @@ const dragAddEdgeBehavior: DragAddEdgeBehavior & ThisType<DragAddEdgeBehavior & 
 
     // TODO: 劫持高亮点
     const hjacpHighlitghtPoint = get(graph, 'cfg.hjacpHighlitghtPoint');
-
     if (hjacpHighlitghtPoint?.({ node: sourceNode, graph })) {
       return;
     }
