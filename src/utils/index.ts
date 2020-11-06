@@ -1,6 +1,7 @@
 import G6 from '@antv/g6';
 import { ItemType, ItemState, GraphState, EditorEvent } from '@/common/constants';
 import { Graph, TreeGraph, EdgeModel, Item, Node, Edge } from '@/common/interfaces';
+import { get } from 'lodash';
 
 /** 生成唯一标识 */
 export function guid() {
@@ -129,8 +130,10 @@ export function clearSelectedState(graph: Graph, shouldUpdate: (item: Item) => b
   executeBatch(graph, () => {
     [...selectedNodes, ...selectedEdges].forEach(item => {
       if (shouldUpdate(item)) {
-        const { originStyle } = item.getModel();
-        item.update({ style: originStyle });
+        const { type } = item.getModel();
+        const nodeTypeMapSrcForState = get(graph, 'cfg.nodeTypeMapSrcForState');
+        const img = get(nodeTypeMapSrcForState, `${type}.no-${ItemState.Selected}`);
+        item.update({ img });
         graph.setItemState(item, ItemState.Selected, false);
         graph.setItemState(item, ItemState.ActiveAnchorPoints, false);
       }

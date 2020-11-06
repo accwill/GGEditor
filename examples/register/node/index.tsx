@@ -3,17 +3,25 @@ import GGEditor, { Flow, RegisterNode, setAnchorPointsState } from 'gg-editor-cu
 import styles from './index.less';
 import { ItemState } from '../../../lib/common/constants';
 
+import n from '../workflow_node_work_n.png';
+import y from '../workflow_node_work_y.png';
 const data = {
   nodes: [
     {
       id: '0',
       label: 'Node',
+      img: n,
+      type: 'S',
+      shape: 'customInternalNode',
       x: 50,
       y: 50,
     },
     {
       id: '1',
+      type: 'node',
       label: 'Node',
+      shape: 'customInternalNode',
+      img: n,
       x: 50,
       y: 200,
     },
@@ -37,7 +45,15 @@ function App() {
         data={data}
         // graphConfig={{ defaultNode: { type: 'customNode' } }}
         // graphConfig={{ defaultNode: { type: 'customStartNode' } }}
-        graphConfig={{ defaultNode: { type: 'customInternalNode', size: 50 } }}
+        graphConfig={{
+          defaultNode: { type: 'customInternalNode', size: 50 },
+          nodeTypeMapSrcForState: {
+            S: {
+              selected: y,
+              'no-selected': n,
+            },
+          },
+        }}
       />
       <RegisterNode
         name="customNode"
@@ -104,8 +120,8 @@ function App() {
           getCustomConfig(model) {
             return {
               stateStyles: {
-                wrapperStyle: {
-                  fill: 'red',
+                selected: {
+                  img: y,
                 },
               },
             };
@@ -146,7 +162,7 @@ function App() {
             ];
           },
         }}
-        extend="circle"
+        extend="image"
       />
     </GGEditor>
   );

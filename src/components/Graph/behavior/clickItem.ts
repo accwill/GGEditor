@@ -60,7 +60,10 @@ const clickItemBehavior: ClickItemBehavior & ThisType<ClickItemBehavior & Defaul
 
       if (!isSelected) {
         graph.setItemState(item, ItemState.Selected, true);
-
+        const { type } = item.getModel();
+        const nodeTypeMapSrcForState = get(graph, 'cfg.nodeTypeMapSrcForState');
+        const img = get(nodeTypeMapSrcForState, `${type}.${ItemState.Selected}`);
+        item.update({ img });
         // TODO: 劫持高亮点
         const hjacpHighlitghtPoint = get(graph, 'cfg.hjacpHighlitghtPoint');
         if (!hjacpHighlitghtPoint?.({ node: item, graph })) {

@@ -8,6 +8,7 @@ import {
   GraphEdgeEvent,
   GraphCanvasEvent,
   GraphCustomEvent,
+  ItemState,
 } from '@/common/constants';
 import IGGroup from '@antv/g-canvas/lib/group';
 import { IShape as IGShape } from '@antv/g-canvas/lib/interfaces';
@@ -62,6 +63,17 @@ export interface GraphOptions extends IGraphOptions {
   }) => boolean;
   /** 鼠标移入节点之后，节点是否高亮Point, 返回true不进行高亮 */
   hjacpHighlitghtPoint: ({ graph, node }) => boolean;
+
+  /** 节点图片映射src */
+  nodeTypeMapSrcForState: {
+    [nodeType: string]: {
+      /** 选中状态 */
+      [ItemState.Selected]: string;
+      /** 非选中状态 */
+      [`no-selected`]: string;
+      [key: string]: string;
+    };
+  };
 }
 export interface CustomShape extends IShapeOptions {}
 export interface CustomNode extends CustomShape {}
